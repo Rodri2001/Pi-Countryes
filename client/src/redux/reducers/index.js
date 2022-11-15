@@ -1,9 +1,11 @@
-import { CREATE_COUNTRIE, GET_COUNTRIES, GET_COUNTRIESNAME, GET_COUNTRIES_DETAIL } from "../actions-types/actions"
+import { CREATE_COUNTRIE, GET_COUNTRIES, GET_COUNTRIESNAME, GET_COUNTRIES_DETAIL, PAGINATE } from "../actions-types/actions"
 
 const initialState = {
     countries: [],
     countriesID: {},
     addactivitys:{},
+    paginate:[],
+
 }
 
 export default function rootReducer(state = initialState, action) {
@@ -28,6 +30,11 @@ export default function rootReducer(state = initialState, action) {
             return {
                 ...state,
                 addactivitys: action.payload
+            }
+        case PAGINATE:
+            return{
+            ...state,
+            paginate:action.payload
             }
 
             break;

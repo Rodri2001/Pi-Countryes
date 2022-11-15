@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { CREATE_COUNTRIE, GET_COUNTRIES, GET_COUNTRIESNAME, GET_COUNTRIES_DETAIL } from '../actions-types/actions'
+import { CREATE_COUNTRIE, GET_COUNTRIES, GET_COUNTRIESNAME, GET_COUNTRIES_DETAIL, PAGINATE } from '../actions-types/actions'
 
 export function getCountries () {
     return async function  (dispatch){
@@ -39,5 +39,12 @@ export function postCountries (addactivitys) {
         type:CREATE_COUNTRIE,
         payload: info.data
       })
+    }
+}
+
+export function paginated(payload){
+    return{
+        type:PAGINATE,
+        payload
     }
 }

@@ -26,7 +26,7 @@ const postActivity = async (req, res) => {
                     id: id,
                 },
             })
-    
+
             findcountry.addActivity(dbactivity)
         })
 

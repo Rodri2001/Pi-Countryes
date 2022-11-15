@@ -1,0 +1,16 @@
+.form{
+    display: flex;
+    width: 300px;
+    padding: 30px;
+    background-color:rgba(209, 209, 209, 0.48);
+    margin: auto;
+    flex-direction: column;
+    margin-top: 10vh;
+    box-shadow: 0 0 6vw 2vw #89898992;
+    backdrop-filter: blur(15px);
+    border-radius: 2em;
+}
+
+.danger {
+    border: red 1px solid
+}

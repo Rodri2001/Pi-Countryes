@@ -1,0 +1,21 @@
+
+.paginate{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    width: 50%;
+    margin-left: 25%;
+}
+
+.buttons {
+    display: flex;
+    width: 2vw;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    border-radius: 1vw;
+    background-color: rgba(210, 210, 210, 0.92);
+    border-color: black;
+    cursor: pointer
+
+}

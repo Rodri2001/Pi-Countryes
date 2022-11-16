@@ -13,8 +13,6 @@ function Detail() {
         dispatch(getCountriesID(id))
 
     },[dispatch])
-   
-   console.log(countriesID.activities,"soy activitiers")
 
   return (
     <div>

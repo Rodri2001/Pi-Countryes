@@ -18,10 +18,10 @@ function SearchBar() {
     }
     function handleSubmit(e) {
         e.preventDefault()
-        console.log(pais,"paisa xd")
         dispatch(getCountriesName(pais.search))
       }
-console.log(pais,22)
+
+      
     return (
         <div>
             <form onClick={(e) => handleSubmit(e)}>

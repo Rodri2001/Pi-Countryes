@@ -12,12 +12,10 @@ function Cards() {
 
     const [current, setCurrent] = useState(1)
 
-    const [cardsPerPage, setCardsPerPage] = useState(8)
-
     const totalCards = countries.length
     const pages = []
 
-    for (let i = 1; i <= Math.ceil(totalCards / cardsPerPage); i++) {
+    for (let i = 1; i <= Math.ceil(totalCards / 10); i++) {
         pages.push(i)
     }
 
@@ -34,7 +32,7 @@ function Cards() {
         <div className={styles.cards}>
             <div className={styles.cardscontainer} >
                 {countries && (pagesState.length ? pagesState : countries).map((e, i) => {
-                    if (i >= current * 8 - 8 && i < current * 8) {
+                    if (i >= current * 10 - 10 && i < current * 10) {
                         return <Card
                             id={e.id}
                             name={e.name}

@@ -13,18 +13,20 @@ const postActivity = async (req, res) => {
             countryIds
         } = req.body
 
-        let dbactivity = await Activity.create({
-            name,
-            difficulty,
-            duration,
-            season,
-        })
-
         countryIds.forEach(async id => {
+
+            let dbactivity = await Activity.create({
+                name,
+                difficulty,
+                duration,
+                season,
+            })
+
             const findcountry = await Country.findOne({
                 where: {
                     id: id,
                 },
+                include : Activity
             })
 
             findcountry.addActivity(dbactivity)

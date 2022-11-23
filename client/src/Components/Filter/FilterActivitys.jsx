@@ -6,7 +6,10 @@ function FilterActivitys() {
 
     const activity = useSelector((state) => state.allactivity)
     const dispatch = useDispatch()
-
+     
+    const allactivitie = activity.map((e) => e.name)
+    const state = new Set(allactivitie)
+    console.log(state,2)
     useEffect(()=>{
      dispatch(allActivity())
     },[dispatch])
@@ -23,7 +26,7 @@ function FilterActivitys() {
     <div>
         <select onChange={(e) => handleChange(e)}>
             <option value="all">Filtrar Actividades</option>
-            { activity.map((e) => (<option key={e.id} value={e.name}>{e.name}</option>))}      
+            { [...state].map((e) => (<option key={e} value={e}>{e}</option>))}      
         </select>
     </div>
   )

@@ -1,4 +1,4 @@
-import { ALL_ACTIVITY, CREATE_COUNTRIE, FILTER_ACTIVITY, FILTER_CONTINENT, GET_COUNTRIES, GET_COUNTRIESNAME, GET_COUNTRIES_DETAIL, ORDER_AZ_ZA, ORDER_POPULATION } from "../actions-types/actions"
+import { ALL_ACTIVITY, CLEAR, CREATE_COUNTRIE, FILTER_ACTIVITY, FILTER_CONTINENT, GET_COUNTRIES, GET_COUNTRIESNAME, GET_COUNTRIES_DETAIL, ORDER_AZ_ZA, ORDER_POPULATION } from "../actions-types/actions"
 
 const initialState = {
     countries: [],
@@ -37,6 +37,7 @@ export default function rootReducer(state = initialState, action) {
                 ...state,
                 allactivity: action.payload
             }
+        
             
         case ORDER_AZ_ZA:
             let filtercontinent = [...state.countriesAll]

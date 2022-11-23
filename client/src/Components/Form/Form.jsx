@@ -18,7 +18,7 @@ function Form() {
     duration: "",
     season: "",
     difficulty: "",
-    countryIds: "",
+    countryIds: [],
   })
 
 
@@ -27,33 +27,28 @@ function Form() {
     duration: "",
     season: "",
     difficulty: "",
-    countryIds: new Set(),
+    countryIds: [],
   })
 
-  function handleChange(e) {
+const  handleChange = (e) => {
     e.preventDefault()
-    console.log(e.target.name)
     if (e.target.name === "countryIds") {
-      setState({
-        ...state,
-        countryIds: [...state.countryIds, e.target.value]
-      })
+      if(state.countryIds.every((t) => t !== e.target.value)){
+        return setState({
+            ...state,
+            countryIds: [...state.countryIds, e.target.value],
+          });
+        }
     } else {
-      console.log("chinga")
       setState({
         ...state,
         [e.target.name]: e.target.value
       });
     }
-    console.log(state, "state")
   }
-
-
 
   function handleSubmit(e) {
     e.preventDefault()
-    // console.log(e.target.value, "soy el value")
-    // console.log(state, "soy state")
     dispatch(postCountries(state))
 
     setState({
@@ -101,14 +96,14 @@ function Form() {
 
   function handleDelete(e) {
     e.preventDefault()
-    let filter = state.countryIds.filter(t => e.target.value !== t)
     setState({
       ...state,
-      countryIds: filter
+      countryIds: state.countryIds.filter((t) => t !== e.target.value)
     })
   }
 
   useEffect(() => {
+    console.log(state.countryIds,22)
     dispatch(getCountries())
 
     if (Object.values(state).every((e) => e.length) && Object.values(errors).every((e) => !e.length)) {
@@ -156,8 +151,8 @@ function Form() {
           </div>
           <div>
             <label>Countries :</label>
-            <select name='countryIds' multiple onChange={(e) => validate(e)} >{
-              countries.map((e) => <option  value={e.name} key={e.name} name={e.name}>{e.name}</option>)
+            <select name='countryIds' multiple >{
+              countries.map((e) => <option  value={e.name} key={e.id} name={e.name}>{e.name}</option>)
             }</select>
             <p>{errors.countryIds}</p>
           </div>

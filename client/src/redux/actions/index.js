@@ -73,6 +73,7 @@ export function orderPopulation(payload){
     }
 }
 
+
 export function filtercontinent(payload){
     return {
         type:FILTER_CONTINENT,

@@ -4,11 +4,11 @@ const { DataTypes } = require('sequelize');
 module.exports = (sequelize) => {
   // defino el modelo
   sequelize.define('activity', {
-    id: {
-      type: DataTypes.UUID,
-      defaultValue: DataTypes.UUIDV4,
-      primaryKey: true
-  },
+  //   id: {
+  //     type: DataTypes.UUID,
+  //     defaultValue: DataTypes.UUIDV4,
+  //     primaryKey: true
+  // },
     name: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -25,5 +25,8 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
         varchar: 255
     },
+    deleted: {
+      type: DataTypes.BOOLEAN,
+    }
   },{timestamps: false});
 };

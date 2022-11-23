@@ -31,7 +31,6 @@ function Cards() {
         <div className={styles.cards}>
             <div className={styles.cardscontainer} >
                 {countries && (countries).map((e, i) => {
-                    console.log(i, 22)
                     if (currentPage > 1) {
                         countriesLength = 10
                     }

@@ -8,17 +8,17 @@ function SearchBar() {
     })
     const dispatch = useDispatch()
 
-    
+
     const handleSearch = (e) => {
-        e.preventDefault()
+        e.preventDefault(pais.length,"sas")
         setPais({
-            ...pais,
-            [e.target.name ]: e.target.value
-        })
+                ...pais,
+                [e.target.name ]: e.target.value
+            })          
     }
     function handleSubmit(e) {
         e.preventDefault()
-        dispatch(getCountriesName(pais.search))
+            dispatch(getCountriesName(pais.search))        
       }
 
       
@@ -26,8 +26,8 @@ function SearchBar() {
         <div>
             <form onClick={(e) => handleSubmit(e)}>
                 <div>
-                    <input onChange={handleSearch} type="text" name='search'></input>
-                    <button type="submit">Buscar</button>
+                    <input onChange={(e) => handleSearch(e)} type="text" name='search'></input>
+                    <button >Buscar</button>
                 </div>
             </form>
         </div>

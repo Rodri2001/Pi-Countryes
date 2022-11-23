@@ -1,3 +1,4 @@
+const {Op} = require("sequelize")
 const {
     Country,
     Activity
@@ -5,16 +6,9 @@ const {
 
 const postActivity = async (req, res) => {
     try {
-        const {
-            name,
-            difficulty,
-            duration,
-            season,
-            countryIds
-        } = req.body
+        const {name,difficulty,duration,season,countryIds} = req.body
 
         countryIds.forEach(async id => {
-
             let dbactivity = await Activity.create({
                 name,
                 difficulty,
@@ -24,14 +18,13 @@ const postActivity = async (req, res) => {
 
             const findcountry = await Country.findOne({
                 where: {
-                    id: id,
+                    name: id,
                 },
-                include : Activity
             })
 
             findcountry.addActivity(dbactivity)
+            console.log(findcountry,"xdxd")
         })
-
 
         res.send("Added activities")
 

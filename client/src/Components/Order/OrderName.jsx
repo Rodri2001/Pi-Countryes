@@ -16,7 +16,7 @@ function OrderName() {
     <div>
         
         <select onChange={(e)=> handleOrdenar(e)} className={styles.select}>
-                <option value='all'>Alphabetically</option>
+                <option value='all'>Ordenar por Nombre</option>
                 <option value='asc'> A a Z  </option>
                 <option value='desc'> Z a A  </option>
             </select>

@@ -9,7 +9,8 @@ function FilterContinent() {
 
   
   let continents = countries.map((e) => e.continent)
-  console.log(continents, "soy continents")
+  
+  
   continents = continents.filter((item, index) => continents.indexOf(item) === index)
 
   useEffect(() => {
@@ -24,7 +25,7 @@ function FilterContinent() {
   return (
     <div>
       <select onChange={(e) => filterAllcontinent(e)}>
-        <option value="all" >All</option>
+        <option value="all" >Filtrar Continente</option>
         {continents.map((e) => <option key={e} value={e}>{e}</option>)}
       </select>
     </div>

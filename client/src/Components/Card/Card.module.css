@@ -1,18 +1,34 @@
-.container {
-    width: auto;
-    display: flex;
-    flex-direction: row;
-    border-radius: 10rem;
-}
 
 .Card {
     display: flex;
-    width: 25vw;
-    flex-direction: row;
-
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
 }
 
 .img{
-    width: 25vw;
-    height: 25vw;
+    display: flex;
+    width: 9vw;
+}
+
+.container {
+    width: 100%;
+    display: flex;
+    border: rgb(29, 1, 1) 2px solid;
+    background-color: rgba(213, 202, 202, 0.34);
+    border-width: 0.5px;
+    border-radius: 80vw;
+    max-width: 20vw;
+    margin-bottom: 20px;
+    flex-direction: column;
+    align-items: center;
+    background-image: url(../../mundo_animado.gif);
+    background-size: cover;
+    color: rgb(197, 255, 89);
+}
+
+
+body{
+    background-image: url(../../pexels-alberlan-barros-7311920.jpg);
+    background-size: cover;
 }

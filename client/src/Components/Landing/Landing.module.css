@@ -1,0 +1,20 @@
+.Landing {
+        display: flex;
+        width: 100%;
+        min-height: 100vh;
+        justify-content: center;
+        background-size:cover;
+        background-image: url(../../mundo.gif);
+}
+
+.container {
+    width: 100px;
+    margin-top: 6vw;
+    }
+.title{
+    color: white
+}
+.button{
+    display: flex;
+    border-radius: 60vw;
+}

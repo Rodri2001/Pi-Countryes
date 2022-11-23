@@ -19,6 +19,7 @@ function Detail() {
         <div>   
            <CountrieDetail 
             id={countriesID.id}
+            codigo={countriesID.codigo}
             name={countriesID.name}
             img={countriesID.imgflag}
             continent={countriesID.continent}

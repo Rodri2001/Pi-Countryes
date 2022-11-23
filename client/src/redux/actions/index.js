@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { ALL_ACTIVITY, CREATE_COUNTRIE, FILTER_CONTINENT, GET_COUNTRIES, GET_COUNTRIESNAME, GET_COUNTRIES_DETAIL, ORDER_AZ_ZA, ORDER_POPULATION, PAGINATE } from '../actions-types/actions'
+import { ALL_ACTIVITY, CREATE_COUNTRIE, FILTER_ACTIVITY, FILTER_CONTINENT, GET_COUNTRIES, GET_COUNTRIESNAME, GET_COUNTRIES_DETAIL, ORDER_AZ_ZA, ORDER_POPULATION, PAGINATE } from '../actions-types/actions'
 
 export function getCountries () {
     return async function  (dispatch){
@@ -76,6 +76,13 @@ export function orderPopulation(payload){
 export function filtercontinent(payload){
     return {
         type:FILTER_CONTINENT,
+        payload,
+    }
+}
+
+export function filterActivity(payload){
+    return {
+        type:FILTER_ACTIVITY,
         payload,
     }
 }

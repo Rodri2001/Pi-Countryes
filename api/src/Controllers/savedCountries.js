@@ -15,6 +15,7 @@ const getAllCountriesInDb = async (req, res) => {
                 resp.data.forEach(async (e) => {
                     await Country.findOrCreate({
                         where: {
+                            codigo: e.cca3,
                             name: e.name.common,
                             continent: e.continents[0],
                             imgflag: e.flags[0],

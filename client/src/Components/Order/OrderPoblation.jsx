@@ -13,7 +13,7 @@ function OrderPoblation() {
   return (
     <div>
       <select onChange={(e) => handleOrdenar(e)}>
-        <option value="all">Todo</option>
+        <option value="all">Ordernar por Poblacion</option>
         <option value="asc" >Menor Poblacion</option>
         <option value="desc" >Mayor Poblacion</option>
       </select>

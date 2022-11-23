@@ -1,13 +1,11 @@
-import { ALL_ACTIVITY, CREATE_COUNTRIE, FILTER_CONTINENT, GET_COUNTRIES, GET_COUNTRIESNAME, GET_COUNTRIES_DETAIL, ORDER_AZ_ZA, ORDER_POPULATION, PAGINATE } from "../actions-types/actions"
+import { ALL_ACTIVITY, CREATE_COUNTRIE, FILTER_ACTIVITY, FILTER_CONTINENT, GET_COUNTRIES, GET_COUNTRIESNAME, GET_COUNTRIES_DETAIL, ORDER_AZ_ZA, ORDER_POPULATION } from "../actions-types/actions"
 
 const initialState = {
     countries: [],
     countriesAll: [],
     countriesID: {},
-    allactivity: [],
     addactivitys: {},
-    paginate: [],
-
+    allactivity: [],
 }
 
 export default function rootReducer(state = initialState, action) {
@@ -16,8 +14,8 @@ export default function rootReducer(state = initialState, action) {
         case GET_COUNTRIES:
             return {
                 ...state,
+                countriesAll: action.payload,
                 countries: action.payload,
-                countriesAll: action.payload
             }
         case GET_COUNTRIESNAME:
             return {
@@ -39,27 +37,25 @@ export default function rootReducer(state = initialState, action) {
                 ...state,
                 allactivity: action.payload
             }
-        case PAGINATE:
-            return {
-                ...state,
-                paginate: action.payload
-            }
+            
         case ORDER_AZ_ZA:
+            let filtercontinent = [...state.countriesAll]
+            let filterorder = [...state.countries]
             if (action.payload === "all") {
                 return {
                     ...state,
-                    countries: [...state.countriesAll]
+                    countries: filtercontinent
                 }
             }
             if (action.payload === 'asc') {
-                const data = [...state.countriesAll].sort((a, b) => (a.name?.toUpperCase() > b.name?.toUpperCase() ? 1 : -1))
+                const data =  filterorder.sort((a, b) => (a.name?.toUpperCase() > b.name?.toUpperCase() ? 1 : -1))
                 return {
                     ...state,
                     countries: data
                 }
             }
 
-            const data = [...state.countriesAll].sort((a, b) => (a.name?.toUpperCase() > b.name?.toUpperCase() ? -1 : 1))
+            const data = filterorder.sort((a, b) => (a.name?.toUpperCase() > b.name?.toUpperCase() ? -1 : 1))
             return {
                 ...state,
                 countries: data,
@@ -67,14 +63,17 @@ export default function rootReducer(state = initialState, action) {
 
 
         case ORDER_POPULATION:
+            
+        let orderpopulation = [...state.countriesAll]
+        let filterpopulation = [...state.countries]
             if (action.payload === "all") {
                 return {
                     ...state,
-                    countries: [...state.countriesAll]
+                    countries: orderpopulation
                 }
             }
             if (action.payload === 'asc') {
-                const data = [...state.countriesAll].sort((a, b) => {
+                const data = filterpopulation.sort((a, b) => {
                     let pesoA = parseInt(a.population);
                     let pesoB = parseInt(b.population);
                     if (pesoA > pesoB) return 1;
@@ -87,7 +86,7 @@ export default function rootReducer(state = initialState, action) {
                 }
             }
             if (action.payload === 'desc') {
-                const data = [...state.countriesAll].sort((a, b) => {
+                const data = filterpopulation.sort((a, b) => {
                     let pesoA = parseInt(a.population);
                     let pesoB = parseInt(b.population);
                     if (pesoA > pesoB) return -1;
@@ -103,18 +102,34 @@ export default function rootReducer(state = initialState, action) {
             break;
 
         case FILTER_CONTINENT:
+            let ordercontinent = [...state.countriesAll]
+            let filtercontinent2 = [...state.countries]
             if (action.payload === "all") {
                 return {
+                    ...state,
+                    countries: ordercontinent
+                }
+            }
+             const data2 = filtercontinent2.filter((e) => e.continent === action.payload)
+            return {
+                ...state,
+                countries: data2
+            }
+            break 
+
+        case FILTER_ACTIVITY:
+            if(action.payload === "all"){
+                return{
                     ...state,
                     countries: [...state.countriesAll]
                 }
             }
-            
-            return {
-                ...state,
-                countries: [...state.countriesAll].filter((e) => e.continent === action.payload)
-            }
 
+            
+            return{
+                ...state,
+                 countries: [...state.countriesAll].filter((e) => e.activities.some(e => e.name === action.payload) )
+            }
 
             break
         default:

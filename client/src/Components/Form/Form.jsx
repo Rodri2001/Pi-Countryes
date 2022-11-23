@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
 import { getCountries, postCountries } from '../../redux/actions'
 import styles from "./Form.module.css"
 
@@ -17,15 +18,16 @@ function Form() {
     duration: "",
     season: "",
     difficulty: "",
-    countryIds: [],
+    countryIds: "",
   })
+
 
   const [state, setState] = useState({
     name: "",
     duration: "",
     season: "",
     difficulty: "",
-    countryIds: [],
+    countryIds: new Set(),
   })
 
   function handleChange(e) {
@@ -46,10 +48,12 @@ function Form() {
     console.log(state, "state")
   }
 
+
+
   function handleSubmit(e) {
     e.preventDefault()
-    console.log(e.target.value, "soy el value")
-    console.log(state, "soy state")
+    // console.log(e.target.value, "soy el value")
+    // console.log(state, "soy state")
     dispatch(postCountries(state))
 
     setState({
@@ -95,6 +99,15 @@ function Form() {
     }
   }
 
+  function handleDelete(e) {
+    e.preventDefault()
+    let filter = state.countryIds.filter(t => e.target.value !== t)
+    setState({
+      ...state,
+      countryIds: filter
+    })
+  }
+
   useEffect(() => {
     dispatch(getCountries())
 
@@ -107,45 +120,55 @@ function Form() {
 
 
   return (
-    <div className={styles.form}>
-      <form id="form" onChange={handleChange} onSubmit={(e) => handleSubmit(e)}>
-        <div>
-          <label>Name: </label>
-          <input name='name' onChange={(e) => validate(e)} ></input>
-          <p>{errors.name}</p>
-        </div>
-        <div>
-          <label>Duration in HS: </label>
-          <input name='duration' type="number" min="0" max="24" onChange={(e) => validate(e)} ></input>
-          <p>{errors.duration}</p>
-        </div>
-        <div>
-          <label>Season: </label>
-          <select name='season' >
-            <option>Autumn</option>
-            <option>Winter</option>
-            <option>Springtime</option>
-            <option>Summer</option>
-          </select>
-          <p>{errors.season}</p>
-        </div>
-        <div>
-          <label>Difficulty :</label>
-          <input type="number" max="5" min="1" name='difficulty' onChange={(e) => validate(e)} ></input>
-          <p>{errors.difficulty}</p>
-        </div>
-        <div>
-          <label>Countries :</label>
-          <select name='countryIds' multiple onChange={(e) => validate(e)} >{
-            countries.map((e) => <option value={e.id} key={e.name} name={e.name}>{e.name}</option>)
-          }</select>
-          <p>{errors.countryIds}</p>
-        </div>
+    <div>
+      <div className={styles.NavBar}>
+        <Link to='/Home' >
+          <button>Home</button>
+        </Link>
+      </div>
 
-        <div>
-          <button disabled={disable} type='submit'>Agregar Actividad</button>
-        </div>
-      </form>
+      <div className={styles.form}>
+        <form id="form" onChange={handleChange} onSubmit={(e) => handleSubmit(e)}>
+          <div>
+            <label >Name: </label>
+            <input className={errors.name && styles.danger} name='name' onChange={(e) => validate(e)} ></input>
+            <p>{errors.name}</p>
+          </div>
+          <div>
+            <label>Duration in HS: </label>
+            <input name='duration' type="number" min="0" max="24" onChange={(e) => validate(e)} ></input>
+            <p>{errors.duration}</p>
+          </div>
+          <div>
+            <label>Season: </label>
+            <select name='season' >
+              <option>Autumn</option>
+              <option>Winter</option>
+              <option>Springtime</option>
+              <option>Summer</option>
+            </select>
+            <p>{errors.season}</p>
+          </div>
+          <div>
+            <label>Difficulty :</label>
+            <input type="number" max="5" min="1" name='difficulty' onChange={(e) => validate(e)} ></input>
+            <p>{errors.difficulty}</p>
+          </div>
+          <div>
+            <label>Countries :</label>
+            <select name='countryIds' multiple onChange={(e) => validate(e)} >{
+              countries.map((e) => <option  value={e.name} key={e.name} name={e.name}>{e.name}</option>)
+            }</select>
+            <p>{errors.countryIds}</p>
+          </div>
+          <div>
+            {state.countryIds.length ? state.countryIds.map((t) => <button key={t} value={t} onClick={(e) => handleDelete(e)}>{t}</button>) : null}
+          </div>
+          <div>
+            <button disabled={disable} type='submit'>Agregar Actividad</button>
+          </div>
+        </form>
+      </div>
     </div>
   )
 }

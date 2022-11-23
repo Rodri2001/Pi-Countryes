@@ -11,7 +11,7 @@ const {
 const getAllCountriesInDb = async (req, res) => {
     try {
         await axios.get(ENV_URL)
-            .then(async (resp) => {  
+            .then( (resp) => {  
                 resp.data.forEach(async (e) => {
                     await Country.findOrCreate({
                         where: {

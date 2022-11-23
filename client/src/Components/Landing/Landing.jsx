@@ -7,9 +7,9 @@ function Landing() {
     <div className={styles.Landing}>
     <div className={styles.container}>
       <h1 className={styles.title}> Paises </h1>
-      <Link to="/Home">
-        <button className={styles.button}>Home</button>
-      </Link>
+        <button className={styles.button}><Link className={styles.link} to="/Home">
+      Buscar Paises</Link></button>
+      
       </div>
     </div>
   )

@@ -9,17 +9,6 @@ const postActivity = async (req, res) => {
         const { name, difficulty, duration, season, countryIds } = req.body
 
         countryIds.forEach(async id => {
-            // let [dbactivity, created] = await Activity.findOrCreate({
-            //     where: {
-            //         name: name,
-            //     },
-            //     defaults: {
-            //         difficulty: difficulty,
-            //         duration: duration,
-            //         season: season,
-            //   
-            //     }
-            // })
             let dbactivity = await Activity.create({
                     name: name,
                     difficulty: difficulty,

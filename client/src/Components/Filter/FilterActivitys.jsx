@@ -9,18 +9,16 @@ function FilterActivitys() {
      
     const allactivitie = activity.map((e) => e.name)
     const state = new Set(allactivitie)
-    console.log(state,2)
+    
     useEffect(()=>{
      dispatch(allActivity())
     },[dispatch])
     
 
     function handleChange(e){
-      console.log(e.target.value,"soy value")
       e.preventDefault()
       dispatch(filterActivity(e.target.value))
     }
-    // console.log(activity,"actividad")
 
   return (
     <div>

@@ -28,5 +28,5 @@ module.exports = (sequelize) => {
     deleted: {
       type: DataTypes.BOOLEAN,
     }
-  },{timestamps: false});
+  },{timestamps: false,paranoid: true});
 };

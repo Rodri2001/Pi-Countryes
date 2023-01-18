@@ -1,9 +1,11 @@
 import axios from 'axios'
 import { ALL_ACTIVITY, CREATE_COUNTRIE, FILTER_ACTIVITY, FILTER_CONTINENT, GET_COUNTRIES, GET_COUNTRIESNAME, GET_COUNTRIES_DETAIL, ORDER_AZ_ZA, ORDER_POPULATION, PAGINATE } from '../actions-types/actions'
 
+let url = "https://pi-countryes-production.up.railway.app"
+
 export function getCountries () {
     return async function  (dispatch){
-     let info = await axios("http://localhost:3001/countries")
+     let info = await axios( url + "/countries")
      return dispatch ({
         type: GET_COUNTRIES,
         payload: info.data,
@@ -13,7 +15,7 @@ export function getCountries () {
 
 export function getCountriesName (name){
     return async function (dispatch){
-        let info = await axios(`http://localhost:3001/countries?name=${name}`)
+        let info = await axios(url + `/countries?name=${name}`)
         return dispatch ({
             type: GET_COUNTRIESNAME,
             payload: info.data
@@ -24,7 +26,7 @@ export function getCountriesName (name){
 
 export function getCountriesID (id) {
     return async function (dispatch){
-        let info = await axios(`http://localhost:3001/countries/${id}`)
+        let info = await axios(url + `/countries/${id}`)
         return dispatch ({
             type:GET_COUNTRIES_DETAIL,
             payload: info.data
@@ -34,7 +36,7 @@ export function getCountriesID (id) {
 
 export function postCountries (addactivitys) {
     return async function (dispatch) {
-      let info = await axios.post(`http://localhost:3001/activities`,addactivitys)
+      let info = await axios.post(url + `/activities`,addactivitys)
       return dispatch ({
         type:CREATE_COUNTRIE,
         payload: info.data
@@ -51,7 +53,7 @@ export function paginated(payload){
 
 export function allActivity(){
     return async function(dispatch){
-        let info = await axios.get(`http://localhost:3001/activitys`)
+        let info = await axios.get(url + `/activitys`)
         return dispatch({
         type:ALL_ACTIVITY,
         payload: info.data

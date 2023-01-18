@@ -5,7 +5,7 @@ let url = "https://pi-countryes-production.up.railway.app"
 
 export function getCountries () {
     return async function  (dispatch){
-     let info = await axios( url + "/countries")
+     let info = await axios( "https://pi-countryes-production.up.railway.app/countries")
      return dispatch ({
         type: GET_COUNTRIES,
         payload: info.data,
